@@ -5,7 +5,7 @@
 
 int open(double ammount) 
 { 
-	int i;
+	int i; 
 	int account_number;
 	for (i = 0; i < 50;i++) {
 		if (arr[i][1] == 0) {
