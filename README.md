@@ -1,8 +1,8 @@
 # sw_systems_hw2
 
-##this project is about arrays and loops.
+## this project is about arrays and loops.
 
-###the project represents a bank account managment, and has the folowing functions:
+### the project represents a bank account managment, and has the folowing functions:
 
 Open: receives ammount from the user, and initial a bank account with this ammount and return the account number.
 
