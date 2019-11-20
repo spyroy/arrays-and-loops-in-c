@@ -6,7 +6,7 @@ LIBa=libmyBank.a
 LIBso=libmyBank.so
 FLAGS= -Wall -g 
 
-all: myBankd myBanks mains maind
+all: myBankd myBanks mains maind 
 
 mains: $(MAINOBJECTS) $(LIBa)
 	$(CC) $(flags) -o mains $(MAINOBJECTS) $(LIBa)
