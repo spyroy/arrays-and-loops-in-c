@@ -1,7 +1,7 @@
 
 double arr[50][2];
 
-int open(double ammount); // if the user typed "O".
+int open(double ammount); // if the user typed "O". 
 double balance(int bankAccount); //if the user typed "B".
 double deposit(int bankAccount, double ammount); //if the user typed "D".
 double withdraw(int bankAccount, double withdraw); //if the user typed "W". 
