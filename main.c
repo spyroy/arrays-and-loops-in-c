@@ -9,57 +9,95 @@ int main(int argc, char **argv)
 	double ammount;
 	double add;
 	double pull;
+	double inter;
+	int check;
 	do{
-		printf("please enter: 'O' to Open new bank account, 'B' to check balance on opened account, 'D' to deposite money to opened account, 'W' to withdraw from opened account, 'C' to close an opened account, 'I' to add interest to all opened accounts, 'P' to print all opened accounts and their balance, 'E' to escape \n");
-		scanf("%c", &choice);
+		printf("please enter (capital): \n 'O' to Open new bank account\n 'B' to check balance on opened account\n 'D' to deposite money to opened account\n 'W' to withdraw from opened account\n 'C' to close an opened account\n 'I' to add interest to all opened accounts\n 'P' to print all opened accounts and their balance\n 'E' to escape \n");
+		scanf(" %c", &choice);
 
 		switch(choice)
 		{
 			case 'O':
 				printf("transection type?: O\n");	
 				printf("please enter ammount to initial bank account \n");
-				scanf(" %lf", &ammount);
+				check = scanf(" %lf", &ammount);
+				if(check !=1){
+					printf("err: not a real number");
+					break;
+				}
 				bankAccount = open(ammount);
-				if(bankAccount == -1)
-					printf("err:all accounts are taken"); break;
-				printf("initial deposite?: %lf\n", ammount);
+				if(bankAccount == -1){
+					printf("err:all accounts are taken \n"); 
+					break;
+				}
+				printf("initial deposite?: %0.2lf\n", ammount);
 				printf("your account number is: %d\n" , bankAccount);
 				break;
 			case 'B':
 				printf("transection type?: B\n");
 				printf("please enter account number (901-950) to check balance \n");
-				scanf("%d", &bankAccount);
-				if(balance(bankAccount)== -1)
-					printf("err: this account is closed\n"); break;
+				check = scanf("%d", &bankAccount);
+				if(check!=1){
+					printf("err: not a natural number");
+					break;
+				}
+				if(balance(bankAccount)== -1){
+					printf("err: this account is closed\n"); 
+					break;
+				}
 				printf("account_number?: %d your balance is: %0.2lf\n", bankAccount, balance(bankAccount));
 				break;
 			case 'D':
 				printf("transection type?: D\n");
-				printf("please enter account number (901-950) and the ammount you want to deposit \n");
-				scanf(" %d %lf",&bankAccount, &add);
-				if(deposit(bankAccount,add) == -1)
-					printf("err: the account is closed\n"); break;
-				printf("account_number?: %d \n you added %lf \n and your new balance is: %0.2lf \n", bankAccount, add, deposit(bankAccount,add));
+				printf("please enter account number (901-950) and the ammount you want to deposit, seperated with space \n");
+				check = scanf(" %d %lf",&bankAccount, &add);
+				if(check !=2){
+					printf("err: wrong input");
+					break;
+				}
+				double added = deposit(bankAccount,add);
+				if(added == -1){
+					printf("err: the account is closed\n");
+					break;
+				}
+				printf("account_number?: %d \n you added %0.2lf \n and your new balance is: %0.2lf \n", bankAccount, add, added);
 				break;				
 			case 'W':
 				printf("transection type?: W\n");
-				printf("please enter account number (901-950) and the ammount you want to withdraw \n");
-				scanf(" %d %lf",&bankAccount, &pull);
-				if (withdraw(bankAccount, pull) == -1)
-					printf("err: the account is closed/ you don't have enough money to withdraw\n"); break;
-				printf("account_number?: %d \n you withdrew %0.2lf \n and your new balance is: %0.2lf \n", bankAccount, pull, withdraw(bankAccount, pull));
+				printf("please enter account number (901-950) and the ammount you want to withdraw, seperated with space \n");
+				check = scanf(" %d %lf",&bankAccount, &pull);
+				if(check !=2){
+					printf("err: wrong input");
+					break;
+				}
+				double withdrew = withdraw(bankAccount, pull);
+				if (withdrew == -1){
+					printf("err: the account is closed/ you don't have enough money to withdraw\n");
+					break;
+				}
+				printf("account_number?: %d \n you withdrew %0.2lf \n and your new balance is: %0.2lf \n", bankAccount, pull, withdrew);
 				break;
 			case 'C':
 				printf("transection type?: C\n");
 				printf("please enter account number (901-950) to close this account \n");
-				scanf(" %d", &bankAccount);
+				check = scanf(" %d", &bankAccount);
+				if(check !=1){
+					printf("err: not a natural number");
+					break;
+				}
 				close(bankAccount);
 				break;
 			case 'I':
 				printf("transection type?: I\n");
-				printf("please enter interest (0.x for x%) to add to all open accounts \n");
+				printf("please enter interest to add to all open accounts \n");
+				check = scanf("%lf", &inter);
+				if(check !=1){
+					printf("err: not a real number");
+					break;
+				}
+				interest(inter);
+				printf("interest added to all open accounts");
 				break;
-				//fix
 			case 'P':
 				printf("transection type?: P\n");
 				printf("printing all bank accounts and their balance...\n");
@@ -72,6 +110,7 @@ int main(int argc, char **argv)
 				escape();
 				break;
 		}
+		getchar();
 	} while(choice != 'E');
 	
 	

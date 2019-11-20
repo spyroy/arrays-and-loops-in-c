@@ -3,7 +3,7 @@
 
 
 
-int open(int ammount) 
+int open(double ammount) 
 { 
 	int i;
 	int account_number;
@@ -35,7 +35,7 @@ double deposit(int bankAccount, double ammount)
 { 
 	double current_balance;
 	if (arr[bankAccount-901][1] == 1) {
-		arr[bankAccount -901][0] = arr[bankAccount -901][0] + ammount;
+		arr[bankAccount -901][0] += ammount;
 		current_balance = arr[bankAccount -901][0];
 	}
 	else{
