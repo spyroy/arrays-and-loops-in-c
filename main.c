@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 				escape();
 				break;
 		}
-		getchar();
+		
 	} while(choice != 'E');
 	
 	
