@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "myBank.h"
 
-
+//main function
 int main(int argc, char **argv)
 {
 	char choice;
