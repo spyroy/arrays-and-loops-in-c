@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 				printf("please enter ammount to initial bank account \n");
 				check = scanf(" %lf", &ammount);
 				if(check !=1){
-					printf("err: not a real number");
+					printf("err: not a real number\n");
 					break;
 				}
 				bankAccount = open(ammount);
@@ -37,8 +37,12 @@ int main(int argc, char **argv)
 				printf("transection type?: B\n");
 				printf("please enter account number (901-950) to check balance \n");
 				check = scanf("%d", &bankAccount);
+				if(bankAccount < 901 || bankAccount > 950){
+					printf("err: this account does not exist\n"); 
+					break;
+				}
 				if(check!=1){
-					printf("err: not a natural number");
+					printf("err: not a natural number\n");
 					break;
 				}
 				if(balance(bankAccount)== -1){
@@ -51,8 +55,12 @@ int main(int argc, char **argv)
 				printf("transection type?: D\n");
 				printf("please enter account number (901-950) and the ammount you want to deposit, seperated with space \n");
 				check = scanf(" %d %lf",&bankAccount, &add);
+				if(bankAccount < 901 || bankAccount > 950){
+					printf("err: this account does not exist\n"); 
+					break;
+				}
 				if(check !=2){
-					printf("err: wrong input");
+					printf("err: wrong input\n");
 					break;
 				}
 				double added = deposit(bankAccount,add);
@@ -66,8 +74,12 @@ int main(int argc, char **argv)
 				printf("transection type?: W\n");
 				printf("please enter account number (901-950) and the ammount you want to withdraw, seperated with space \n");
 				check = scanf(" %d %lf",&bankAccount, &pull);
+				if(bankAccount < 901 || bankAccount > 950){
+					printf("err: this account does not exist\n"); 
+					break;
+				}
 				if(check !=2){
-					printf("err: wrong input");
+					printf("err: wrong input\n");
 					break;
 				}
 				double withdrew = withdraw(bankAccount, pull);
@@ -81,8 +93,12 @@ int main(int argc, char **argv)
 				printf("transection type?: C\n");
 				printf("please enter account number (901-950) to close this account \n");
 				check = scanf(" %d", &bankAccount);
+				if(bankAccount < 901 || bankAccount > 950){
+					printf("err: this account does not exist\n"); 
+					break;
+				}
 				if(check !=1){
-					printf("err: not a natural number");
+					printf("err: not a natural number\n");
 					break;
 				}
 				close(bankAccount);
@@ -90,9 +106,13 @@ int main(int argc, char **argv)
 			case 'I':
 				printf("transection type?: I\n");
 				printf("please enter interest to add to all open accounts \n");
-				check = scanf("%lf", &inter);
+				check = scanf("%lf", &inter);		
+				if(inter > 100){
+					printf("err: cannot add more than 100 precent.\n"); 
+					break;
+				}
 				if(check !=1){
-					printf("err: not a real number");
+					printf("err: not a real number\n");
 					break;
 				}
 				interest(inter);
@@ -108,6 +128,9 @@ int main(int argc, char **argv)
 				printf("closing all bank accounts...\n");
 				printf("thank you and goodbye\n");
 				escape();
+				break;
+			default:
+				printf("ERR; Please enter valid input.\n");
 				break;
 		}
 		
