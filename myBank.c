@@ -70,7 +70,7 @@ void interest(double inter) {
 	int i;
 	for (i = 0; i < 50; i++) {
 		if (arr[i][1] == 1) {
-			arr[i][0] = arr[i][0] + (arr[i][0] * inter);
+			arr[i][0] = arr[i][0] + (arr[i][0] * (inter/100));
 		}
 	}
 }
