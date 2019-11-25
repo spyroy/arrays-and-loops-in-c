@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 					break;
 				}
 				interest(inter);
-				printf("interest added to all open accounts");
+				printf("interest added to all open accounts\n");
 				break;
 			case 'P':
 				printf("transection type?: P\n");
