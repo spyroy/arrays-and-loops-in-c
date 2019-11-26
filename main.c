@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "myBank.h"
+#define start_account 901
+#define end_account 950
 
 //main function
 int main(int argc, char **argv)
@@ -35,9 +37,9 @@ int main(int argc, char **argv)
 				break;
 			case 'B':
 				printf("transection type?: B\n");
-				printf("please enter account number (901-950) to check balance \n");
+				printf("please enter account number (901 - 950) to check balance \n");
 				check = scanf("%d", &bankAccount);
-				if(bankAccount < 901 || bankAccount > 950){
+				if(bankAccount < start_account || bankAccount > end_account){
 					printf("err: this account does not exist\n"); 
 					break;
 				}
@@ -55,7 +57,7 @@ int main(int argc, char **argv)
 				printf("transection type?: D\n");
 				printf("please enter account number (901-950) and the ammount you want to deposit, seperated with space \n");
 				check = scanf(" %d %lf",&bankAccount, &add);
-				if(bankAccount < 901 || bankAccount > 950){
+				if(bankAccount < start_account || bankAccount > end_account){
 					printf("err: this account does not exist\n"); 
 					break;
 				}
@@ -74,7 +76,7 @@ int main(int argc, char **argv)
 				printf("transection type?: W\n");
 				printf("please enter account number (901-950) and the ammount you want to withdraw, seperated with space \n");
 				check = scanf(" %d %lf",&bankAccount, &pull);
-				if(bankAccount < 901 || bankAccount > 950){
+				if(bankAccount < start_account || bankAccount > end_account){
 					printf("err: this account does not exist\n"); 
 					break;
 				}
@@ -84,7 +86,11 @@ int main(int argc, char **argv)
 				}
 				double withdrew = withdraw(bankAccount, pull);
 				if (withdrew == -1){
-					printf("err: the account is closed/ you don't have enough money to withdraw\n");
+					printf("err: the account is closed\n");
+					break;
+				}
+				if(withdrew == -2){
+					printf("err: you don't have enough money to withdraw\n");
 					break;
 				}
 				printf("account_number?: %d \n you withdrew %0.2lf \n and your new balance is: %0.2lf \n", bankAccount, pull, withdrew);
@@ -93,7 +99,7 @@ int main(int argc, char **argv)
 				printf("transection type?: C\n");
 				printf("please enter account number (901-950) to close this account \n");
 				check = scanf(" %d", &bankAccount);
-				if(bankAccount < 901 || bankAccount > 950){
+				if(bankAccount < start_account || bankAccount > end_account){
 					printf("err: this account does not exist\n"); 
 					break;
 				}

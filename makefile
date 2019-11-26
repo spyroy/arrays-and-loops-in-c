@@ -23,7 +23,7 @@ main.o: main.c myBank.h
 myBank.o: myBank.c
 	$(CC) -fPIC $(FLAGS) -c myBank.c
 
-.PHONY: clean all
+.PHONY: clean all 
 
 clean: 
 	rm -f *.o mains maind $(LIBso) $(LIBa)

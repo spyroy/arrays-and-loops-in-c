@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "myBank.h"
+#define size 50
+#define first_account 901
+#define last_account 950
 
 
 
@@ -7,11 +10,11 @@ int open(double ammount)
 { 
 	int i; 
 	int account_number;
-	for (i = 0; i < 50;i++) {
+	for (i = 0; i < size;i++) {
 		if (arr[i][1] == 0) {
 			arr[i][0] = ammount;
 			arr[i][1] = 1;
-			account_number = i + 901;
+			account_number = i + first_account;
 			break;
 		}
 		else{
@@ -23,8 +26,8 @@ int open(double ammount)
 double balance(int bankAccount) 
 { 
 	double current_balance;
-	if (arr[bankAccount-901][1] == 1) {
-		current_balance = arr[bankAccount-901][0];
+	if (arr[bankAccount-first_account][1] == 1) {
+		current_balance = arr[bankAccount-first_account][0];
 	}
 	else{
 		current_balance = -1;
@@ -34,9 +37,9 @@ double balance(int bankAccount)
 double deposit(int bankAccount, double ammount) 
 { 
 	double current_balance;
-	if (arr[bankAccount-901][1] == 1) {
-		arr[bankAccount -901][0] += ammount;
-		current_balance = arr[bankAccount -901][0];
+	if (arr[bankAccount-first_account][1] == 1) {
+		arr[bankAccount -first_account][0] += ammount;
+		current_balance = arr[bankAccount -first_account][0];
 	}
 	else{
 		current_balance = -1;
@@ -46,20 +49,23 @@ double deposit(int bankAccount, double ammount)
 double withdraw(int bankAccount , double withdraw) 
 {
 	double new_balance;
-	if (arr[bankAccount-901][1] == 1 && withdraw <= arr[bankAccount-901][0]) {
-		arr[bankAccount -901][0] = arr[bankAccount -901][0] - withdraw;
-		new_balance = arr[bankAccount - 901][0];
+	if (arr[bankAccount-first_account][1] == 1 && withdraw <= arr[bankAccount-first_account][0]) {
+		arr[bankAccount -first_account][0] = arr[bankAccount -first_account][0] - withdraw;
+		new_balance = arr[bankAccount - first_account][0];
 	}
-	else{
+	else if(arr[bankAccount-first_account][1] == 0){
 		new_balance = -1;
+	}
+	else if(withdraw > arr[bankAccount-first_account][0]){
+		new_balance = -2;
 	}
 	return new_balance;
 }
 void close(int bankAccount) 
 {
-	if (arr[bankAccount-901][1] == 1) {
-		arr[bankAccount - 901][1] = 0;
-		arr[bankAccount - 901][0] = 0;
+	if (arr[bankAccount-first_account][1] == 1) {
+		arr[bankAccount - first_account][1] = 0;
+		arr[bankAccount - first_account][0] = 0;
 		printf("account_number?: %d is now closed!\n", bankAccount);
 	} 
 	else {
@@ -68,7 +74,7 @@ void close(int bankAccount)
 }
 void interest(double inter) {
 	int i;
-	for (i = 0; i < 50; i++) {
+	for (i = 0; i < size; i++) {
 		if (arr[i][1] == 1) {
 			arr[i][0] = arr[i][0] + (arr[i][0] * (inter/100));
 		}
@@ -77,16 +83,16 @@ void interest(double inter) {
 void print() 
 { 
 	int i;
-	for(i = 0; i < 50; i++){
+	for(i = 0; i < size; i++){
 		if(arr[i][1] == 1){
-			printf("account number: %d amount: %0.2lf\n", i+901 , arr[i][0]);
+			printf("account number: %d amount: %0.2lf\n", i+first_account , arr[i][0]);
 		}
 	}
 }
 void escape() 
 {
 	int i;
-	for(i = 0; i < 50; i++){
+	for(i = 0; i < size; i++){
 		if (arr[i][1] == 1) {
 			arr[i][1] = 0;
 			arr[i][0] = 0;

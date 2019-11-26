@@ -1,5 +1,6 @@
+#define bank_accounts 50
 
-double arr[50][2];
+double arr[bank_accounts][2];
 
 int open(double ammount); // if the user typed "O". 
 double balance(int bankAccount); //if the user typed "B".
