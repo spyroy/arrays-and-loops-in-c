@@ -27,6 +27,10 @@ int main(int argc, char **argv)
 					printf("err: not a real number\n");
 					break;
 				}
+				if(ammount < 0){
+					printf("err:cant open account with negative ammount of money \n"); 
+					break;
+				}
 				bankAccount = open(ammount);
 				if(bankAccount == -1){
 					printf("err:all accounts are taken \n"); 
@@ -65,6 +69,10 @@ int main(int argc, char **argv)
 					printf("err: wrong input\n");
 					break;
 				}
+				if(add < 0){
+					printf("err: cant deposit negative ammount of money\n");
+					break;
+				}
 				double added = deposit(bankAccount,add);
 				if(added == -1){
 					printf("err: the account is closed\n");
@@ -82,6 +90,10 @@ int main(int argc, char **argv)
 				}
 				if(check !=2){
 					printf("err: wrong input\n");
+					break;
+				}
+				if(pull < 0){
+					printf("err: cant withdraw negative ammount of money\n");
 					break;
 				}
 				double withdrew = withdraw(bankAccount, pull);
@@ -113,10 +125,6 @@ int main(int argc, char **argv)
 				printf("transection type?: I\n");
 				printf("please enter interest to add to all open accounts \n");
 				check = scanf("%lf", &inter);		
-				if(inter > 100){
-					printf("err: cannot add more than 100 precent.\n"); 
-					break;
-				}
 				if(check !=1){
 					printf("err: not a real number\n");
 					break;

@@ -4,7 +4,7 @@
 #define first_account 901
 #define last_account 950
 
-
+double arr[bank_accounts][2] = {0};
 
 int open(double ammount) 
 { 
