@@ -13,7 +13,7 @@ Withdraw: recives ammount from the user to withdraw and the account number, and 
 Close: recives account number and close that account, all data in that account will be erased.
 
 Interest: recives interest from the user and adds it to all open accounts,
-the interest should be in double type and will represent the precentage to add.
+the interest should be an Integer and will represent the precentage to add, also can be negative.
  
 Print:prints all open account, the account number and the balance.
  
