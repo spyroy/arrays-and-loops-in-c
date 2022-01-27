@@ -17,4 +17,4 @@ the interest should be an Integer and will represent the precentage to add, also
  
 Print:prints all open account, the account number and the balance.
  
-Escape: exit the program and close all open accounts.
+Escape: exit the program and close all open accounts. 
